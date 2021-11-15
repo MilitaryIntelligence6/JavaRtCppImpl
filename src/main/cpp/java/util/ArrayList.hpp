@@ -94,7 +94,7 @@ namespace java {
             } else if (initialCapacity == 0) {
                 this->elementData = EMPTY_ELEMENTDATA;
             } else {
-                std::cerr <<
+//                std::cerr <<
             }
         }
 

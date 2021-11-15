@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(src/main/cpp)
 
+include_directories(dep/fmt/include)
+
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -Wextra -Wno-sign-compare -Wno-unused-but-set-variable -Wno-array-bounds")
     # set(EXTRA_CXX_FLAGS -Weffc++ -Wswitch-default -Wfloat-equal -Wconversion -Wsign-conversion)
@@ -28,6 +30,12 @@ FILE(GLOB SOURCE_FILES
         src/main/cpp/*/*/*.hpp
         src/main/cpp/*/*/*.cpp
         )
+
+find_library(
+        FMT_LIB
+        libfmtd.dylib
+        ${PROJECT_SOURCE_DIR}/dep/dylib
+)
 
 add_library(
         JavaRtCppImpl

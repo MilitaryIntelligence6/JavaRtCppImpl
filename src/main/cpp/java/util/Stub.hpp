@@ -2,8 +2,8 @@
 // Created by JavaMan on 2021/11/15.
 //
 
-#ifndef JAVARTCPPIMPL_STUB_HPP
-#define JAVARTCPPIMPL_STUB_HPP
+#ifndef JAVARTCPPIMPL_STUB_H
+#define JAVARTCPPIMPL_STUB_H
 
 #include <iostream>
 
@@ -17,10 +17,14 @@ namespace java {
             ~Stub();
         };
 
-        Stub::Stub() {
-
-        }
+//        Stub::Stub() {
+//            std::cerr << "un impl" << std::endl;
+//        }
+//
+//        Stub::~Stub() {
+//
+//        }
     }
 }
 
-#endif //JAVARTCPPIMPL_STUB_HPP
+#endif //JAVARTCPPIMPL_STUB_H

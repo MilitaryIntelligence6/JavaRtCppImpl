@@ -24,7 +24,16 @@ namespace java {
 
             int listSize;
 
-            E elementData[];
+            /**
+             * values 数组, 不能给数组赋值;
+             */
+            E *elementData;
+
+            void ensureCapacityInternal(int minCapacity);
+
+            void ensureExplicitCapacity(int minCapacity);
+
+//            int modCount = 0;
 
         public:
             ArrayList();
@@ -84,7 +93,7 @@ namespace java {
 
         template<class E>
         ArrayList<E>::ArrayList() {
-            this->elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+            this->elementData = (E *) DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
         }
 
         template<class E>
@@ -94,31 +103,41 @@ namespace java {
             } else if (initialCapacity == 0) {
                 this->elementData = EMPTY_ELEMENTDATA;
             } else {
-//                std::cerr <<
+                std::cerr << "IllegalArgumentException(\"Illegal Capacity: initialCapacity);" << std::endl;
             }
         }
 
         template<class E>
         ArrayList<E>::~ArrayList() {
-            if (EMPTY_ELEMENTDATA) {
-                delete[] EMPTY_ELEMENTDATA;
-                EMPTY_ELEMENTDATA = nullptr;
+            if (elementData) {
+                delete[] elementData;
+                elementData = nullptr;
             }
         }
 
         template<class E>
         int ArrayList<E>::size() const {
-            return 0;
+            return listSize;
         }
 
         template<class E>
         bool ArrayList<E>::isEmpty() const {
-            return false;
+            return listSize == 0;
         }
 
         template<class E>
         bool ArrayList<E>::contains(E e) const {
-            return false;
+            return indexOf(e) >= 0;
+        }
+
+        template<class E>
+        int ArrayList<E>::indexOf(E e) const {
+            for (int i = 0; i < listSize; ++i) {
+                if (e == elementData[i]) {
+                    return i;
+                }
+            }
+            return -1;
         }
 
         template<class E>
@@ -133,7 +152,9 @@ namespace java {
 
         template<class E>
         bool ArrayList<E>::add(E e) {
-            return false;
+
+            elementData[listSize++] = e;
+            return true;
         }
 
         template<class E>
@@ -204,11 +225,6 @@ namespace java {
         template<class E>
         E ArrayList<E>::remove(int index) {
             return nullptr;
-        }
-
-        template<class E>
-        int ArrayList<E>::indexOf(E e) const {
-            return 0;
         }
 
         template<class E>

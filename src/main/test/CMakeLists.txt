@@ -7,8 +7,9 @@ include_directories(src/main/cpp)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/cmake-build-test)
 
 
-set(TEST_FILES
-        ${PROJECT_SOURCE_DIR}/src/main/test/Test.cpp
+FILE(GLOB
+        TEST_FILES
+        ${PROJECT_SOURCE_DIR}/src/main/test/*.cpp
         )
 
 add_executable(

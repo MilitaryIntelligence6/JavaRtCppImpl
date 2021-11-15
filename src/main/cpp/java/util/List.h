@@ -60,7 +60,7 @@ namespace java {
              */
             virtual java::unimpl::Stub listIterator() const = 0;
 
-            virtual List<E> *subList(int formIndex, int toIndex) const = 0;
+//            virtual List<E> *subList(int formIndex, int toIndex) const = 0;
 
             /**
              * jdk 11

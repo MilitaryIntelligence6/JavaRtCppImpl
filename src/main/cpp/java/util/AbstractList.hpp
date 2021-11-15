@@ -19,9 +19,32 @@ namespace java {
                 public java::lang::Cloneable,
                 public java::io::Serializable {
 
+        private:
+
+            void checkForComodification();
+
+        protected:
+            int modCount = 0;
+
+
         public:
+
+            virtual bool add(E e);
+
             virtual E get(int index) = 0;
+
+            virtual E set(int index, E element) = 0;
+
+            virtual void add(int index, E element) = 0;
+
+            virtual E remove(int index) = 0;
         };
+
+        template<class E>
+        bool util::AbstractList<E>::add(E e) {
+            this->add(this->size(), e);
+            return true;
+        }
     }
 }
 

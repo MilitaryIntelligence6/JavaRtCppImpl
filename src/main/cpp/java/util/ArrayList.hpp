@@ -6,14 +6,19 @@
 #define JAVARTCPPIMPL_ARRAYLIST_HPP
 
 #include <ostream>
-#include "List.h"
+#include "java/util/List.h"
+#include "java/util/AbstractList.hpp"
 
 namespace java {
 
     namespace util {
 
         template<class E>
-        class ArrayList : public List<E> {
+        class ArrayList :
+                public java::util::AbstractList<E>,
+                public java::util::List<E>,
+                public java::lang::Cloneable,
+                public java::io::Serializable {
 
         private:
             static const int DEFAULT_CAPACITY = 10;
@@ -28,6 +33,8 @@ namespace java {
              * values 数组, 不能给数组赋值;
              */
             E *elementData;
+
+            static int calculateCapacity(E eleData[], int minCapacity);
 
             void ensureCapacityInternal(int minCapacity);
 
@@ -89,6 +96,8 @@ namespace java {
             unimpl::Stub listIterator() const override;
 
             List<E> *subList(int formIndex, int toIndex) const override;
+
+            E get(int index) override;
         };
 
         template<class E>
@@ -240,6 +249,29 @@ namespace java {
         template<class E>
         List<E> *ArrayList<E>::subList(int formIndex, int toIndex) const {
             return new ArrayList<E>();
+        }
+
+        template<class E>
+        E ArrayList<E>::get(int index) {
+            return nullptr;
+        }
+
+        template<class E>
+        int ArrayList<E>::calculateCapacity(E *eleData, int minCapacity) {
+            if (eleData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+                return std::(DEFAULT_CAPACITY, minCapacity);
+            }
+            return 0;
+        }
+
+        template<class E>
+        void ArrayList<E>::ensureCapacityInternal(int minCapacity) {
+
+        }
+
+        template<class E>
+        void ArrayList<E>::ensureExplicitCapacity(int minCapacity) {
+
         }
     }
 }

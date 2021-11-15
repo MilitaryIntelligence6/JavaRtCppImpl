@@ -14,6 +14,7 @@ namespace java {
         class List : public Collection<E> {
 
         public:
+
             virtual bool addAll(int index, Collection<E> c) = 0;
 
             /**

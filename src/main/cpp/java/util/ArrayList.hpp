@@ -15,10 +15,21 @@ namespace java {
         template<class E>
         class ArrayList : public List<E> {
 
+        private:
+            static const int DEFAULT_CAPACITY = 10;
+
+            static constexpr E EMPTY_ELEMENTDATA[] = {};
+
+            static constexpr E DEFAULTCAPACITY_EMPTY_ELEMENTDATA[] = {};
+
+            int listSize;
+
+            E elementData[];
+
         public:
             ArrayList();
 
-            explicit ArrayList(int size);
+            explicit ArrayList(int initialCapacity);
 
             ~ArrayList();
 
@@ -73,6 +84,26 @@ namespace java {
 
         template<class E>
         ArrayList<E>::ArrayList() {
+            this->elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+        }
+
+        template<class E>
+        ArrayList<E>::ArrayList(int initialCapacity) {
+            if (initialCapacity > 0) {
+                this->elementData = new E[initialCapacity];
+            } else if (initialCapacity == 0) {
+                this->elementData = EMPTY_ELEMENTDATA;
+            } else {
+                std::cerr <<
+            }
+        }
+
+        template<class E>
+        ArrayList<E>::~ArrayList() {
+            if (EMPTY_ELEMENTDATA) {
+                delete[] EMPTY_ELEMENTDATA;
+                EMPTY_ELEMENTDATA = nullptr;
+            }
         }
 
         template<class E>

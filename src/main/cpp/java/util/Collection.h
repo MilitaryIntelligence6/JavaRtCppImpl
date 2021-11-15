@@ -157,6 +157,11 @@ namespace java {
 //                return StreamSupport.stream(spliterator(), true);
 //            }
         };
+
+        template<class E>
+        bool Collection<E>::removeIf(java::unimpl::Stub *stub) {
+            return false;
+        }
     }
 }
 
